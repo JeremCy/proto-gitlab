@@ -1,0 +1,71 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package bookings;
+
+service BookingsServices {
+  rpc findAll(google.protobuf.Empty) returns (GetBookingsResponse) {}
+  rpc findById(GetBookingsRequest) returns (GetBookingsResponse) {}
+  rpc create(CreateBookingsRequest) returns (CreateBookingsResponse) {}
+  rpc update(UpdateBookingsRequest) returns (UpdateBookingsResponse) {}
+  rpc delete(DeleteBookingsRequest) returns (DeleteBookingsResponse) {}
+}
+
+message Bookings {
+    int32 reservationNumber  = 1;
+    string email = 2;
+    string UserId = 3;
+    string roomId = 4;
+    string hotelId = 5;
+    string services = 6;
+    Date startAt = 7;
+    Date endAt = 8;
+}
+
+message Date {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+}
+
+message GetBookingsRequest {
+    int32 reservationNumber  = 1;
+}
+
+message GetBookingsResponse {
+    int32 status = 1;
+    repeated Bookings bookings = 2;
+    optional string error = 3;
+}
+
+message CreateBookingsRequest {
+    Bookings bookings = 1;
+}
+
+message CreateBookingsResponse {
+    int32 status = 1;
+    Bookings bookings = 2;
+    optional string error = 3;
+}
+
+message UpdateBookingsRequest {
+    int32 id  = 1;
+    Bookings bookings = 2;
+
+}
+
+message UpdateBookingsResponse {
+    int32 status = 1;
+    Bookings bookings = 2;
+    optional string error = 3;
+}
+
+message DeleteBookingsRequest {
+    int32 reservationNumber  = 1;
+}
+
+message DeleteBookingsResponse {
+    int32 status = 1;
+    Bookings bookings = 2;
+    optional string error = 3;
+}
+

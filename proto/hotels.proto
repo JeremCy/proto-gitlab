@@ -1,0 +1,63 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package hotels;
+
+service HotelsServices {
+  rpc findAll(google.protobuf.Empty) returns (GetHotelsResponse) {}
+  rpc findById(GetHotelsRequest) returns (GetHotelsResponse) {}
+  rpc create(CreateHotelRequest) returns (CreateHotelResponse) {}
+  rpc update(UpdateHotelRequest) returns (UpdateHotelResponse) {}
+  rpc delete(DeleteHotelRequest) returns (DeleteHotelResponse) {}
+}
+
+message Hotel {
+    int32 id = 1;
+    string name = 2;
+    string adress = 3;
+    string city = 4;
+    string zipcode = 5;
+    string phone = 6;
+}
+
+message GetHotelsRequest {
+    int32 id = 1;
+}
+
+message GetHotelsResponse {
+    int32 status = 1;
+    repeated Hotel hotels = 2;
+    optional string error = 3;
+}
+
+message CreateHotelRequest {
+    Hotel hotel = 1;
+}
+
+message CreateHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
+message UpdateHotelRequest {
+    int32 id = 1;
+    Hotel hotel = 2;
+}
+
+message UpdateHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
+message DeleteHotelRequest {
+    int32 id = 1;
+}
+
+message DeleteHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
+

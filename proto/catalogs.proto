@@ -1,0 +1,58 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package catalog;
+
+service CatalogService {
+    rpc findAll(google.protobuf.Empty) returns (GetCatalogResponse) {}
+    rpc findById(GetCatalogRequest) returns (GetCatalogResponse) {}
+    rpc create(CreateCatalogRequest) returns (CreateCatalogResponse) {}
+    rpc update(UpdateCatalogRequest) returns (UpdateCatalogResponse) {}
+    rpc delete(DeleteCatalogRequest) returns (DeleteCatalogResponse) {}
+}
+
+message catalog {
+    int32 id = 1;
+    string name = 2;
+    string adress = 3;
+    string city = 4;
+    string zipcode = 5;
+    string phone = 6;
+}
+
+message GetCatalogRequest {
+    string id = 1;
+}
+
+message GetCatalogResponse {
+    int32 status = 1;
+    repeated string errors = 2;
+}
+
+message CreateCatalogRequest {
+    string name = 1;
+    string adress = 2;
+    string city = 3;
+    string zipcode = 4;
+    string phone = 4;
+}
+
+message CreateCatalogResponse {
+    int32 status = 1;
+    repeated string errors = 2;
+}
+
+message UpdateCatalogRequest {
+    int32 id = 1;
+    catalog catalog = 2;
+}
+
+message UpdateCatalogResponse {
+    int32 status = 1;
+    repeated string errors = 2;
+}
+
+message DeleteCatalogRequest {
+    int32 status = 1;
+    repeated string errors = 2;
+}
+
