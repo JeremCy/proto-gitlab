@@ -33,7 +33,7 @@ message CreateCatalogRequest {
     string adress = 2;
     string city = 3;
     string zipcode = 4;
-    string phone = 4;
+    string phone = 5;
 }
 
 message CreateCatalogResponse {
