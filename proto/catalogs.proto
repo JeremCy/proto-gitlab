@@ -35,6 +35,12 @@ message GetservicesResponse {
     optional string error = 3;
 }
 
+message GetserviceResponse {
+    int32 status = 1;
+    Services services = 2;
+    optional string error = 3;
+}
+
 message GetServicesRequest {
     int32 id = 1;
 }
@@ -68,8 +74,7 @@ message UpdateServicesRequest {
 
 message UpdateServicesResponse {
     int32 status = 1;
-    Services services = 2;
-    optional string error = 3;
+    optional string error = 2;
 }
 
 message DeleteServicesRequest {
@@ -78,8 +83,7 @@ message DeleteServicesRequest {
 
 message DeleteServicesResponse {
     int32 status = 1;
-    Services services = 2;
-    optional string error = 3;
+    optional string error = 2;
 }
 
 message Room {
@@ -134,16 +138,15 @@ message DeleteRoomRequest {
 
 message DeleteRoomResponse {
     int32 status = 1;
-    Room room = 2;
-    optional string error = 3;
+    optional string error = 2;
 }
 
 message Hotel {
     int32 id = 1;
     string name = 2;
-    string adress = 3;
+    string address = 3;
     string city = 4;
-    string zipcode = 5;
+    string zipCode = 5;
     string phone = 6;
 }
 
@@ -174,8 +177,7 @@ message UpdateHotelRequest {
 
 message UpdateHotelResponse {
     int32 status = 1;
-    Hotel hotel = 2;
-    optional string error = 3;
+    optional string error = 2;
 }
 
 message DeleteHotelRequest {
@@ -184,8 +186,7 @@ message DeleteHotelRequest {
 
 message DeleteHotelResponse {
     int32 status = 1;
-    Hotel hotel = 2;
-    optional string error = 3;
+    optional string error = 2;
 }
 
 
