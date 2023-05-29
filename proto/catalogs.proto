@@ -3,14 +3,142 @@ import "google/protobuf/empty.proto";
 package catalog;
 
 service CatalogService {
-    rpc findAll(google.protobuf.Empty) returns (GetCatalogResponse) {}
-    rpc findById(GetCatalogRequest) returns (GetCatalogResponse) {}
-    rpc create(CreateCatalogRequest) returns (CreateCatalogResponse) {}
-    rpc update(UpdateCatalogRequest) returns (UpdateCatalogResponse) {}
-    rpc delete(DeleteCatalogRequest) returns (DeleteCatalogResponse) {}
+  rpc HotelsfindAll(google.protobuf.Empty) returns (GetHotelsResponse) {}
+  rpc HotelsfindById(GetHotelsRequest) returns (GetHotelsResponse) {}
+  rpc Hotelscreate(CreateHotelRequest) returns (CreateHotelResponse) {}
+  rpc Hotelsupdate(UpdateHotelRequest) returns (UpdateHotelResponse) {}
+  rpc Hotelsdelete(DeleteHotelRequest) returns (DeleteHotelResponse) {}
+
+ rpc RoomsfindAll (google.protobuf.Empty) returns (GetRoomsResponse) {}
+ rpc RoomsfindById (GetRoomRequest) returns (GetRoomResponse) {}
+ rpc Roomscreate (CreateRoomRequest) returns (CreateRoomResponse) {}
+ rpc Roomsupdate (UpdateRoomRequest) returns (UpdateRoomResponse) {}
+ rpc Roomsdelete (DeleteRoomRequest) returns (DeleteRoomResponse) {}
+
+     rpc ServicesfindAll (google.protobuf.Empty) returns (GetservicesResponse) {}
+    rpc ServicesfindById (GetServicesRequest) returns (GetServicesResponse) {}
+    rpc Servicescreate (CreateServicesRequest) returns (CreateServicesResponse) {}
+    rpc Servicesupdate (UpdateServicesRequest) returns (UpdateServicesResponse) {}
+    rpc Servicesdelete (DeleteServicesRequest) returns (DeleteServicesResponse) {}
 }
 
-message catalog {
+message Services {
+   string service_name = 1;
+    int32 service_price = 2;
+    int32 hotel_id = 3;
+    bool isActive = 4;
+}
+
+message GetservicesResponse {
+    int32 status = 1;
+    repeated Services services = 2;
+    optional string error = 3;
+}
+
+message GetServicesRequest {
+    int32 id = 1;
+}
+
+message GetServicesResponse {
+    int32 status = 1;
+    Services services = 2;
+    optional string error = 3;
+}
+
+message CreateServicesRequest {
+    string service_name = 1;
+    int32 service_price = 2;
+    int32 hotel_id = 3;
+    bool isActive = 4;
+}
+
+message CreateServicesResponse {
+    int32 status = 1;
+    Services services = 2;
+    optional string error = 3;
+}
+
+message UpdateServicesRequest {
+    int32 id = 1;
+    string service_name = 2;
+    int32 service_price = 3;
+    int32 hotel_id = 4;
+    bool isActive = 5;
+}
+
+message UpdateServicesResponse {
+    int32 status = 1;
+    Services services = 2;
+    optional string error = 3;
+}
+
+message DeleteServicesRequest {
+    int32 id = 1;
+}
+
+message DeleteServicesResponse {
+    int32 status = 1;
+    Services services = 2;
+    optional string error = 3;
+}
+
+message Room {
+    int32 id = 1;
+    string room_category = 2;
+    string room_capacity = 3;
+    int32 base_price = 4;
+    int32 hotel_id = 5;
+    bool isActive = 6;
+}
+
+message GetRoomsResponse {
+    int32 status = 1;
+    repeated Room rooms = 2;
+    optional string error = 3;
+}
+
+message GetRoomRequest {
+    int32 id = 1;
+}
+
+message GetRoomResponse {
+    int32 status = 1;
+    Room room = 2;
+    optional string error = 3;
+}
+
+message CreateRoomRequest {
+    Room room = 1;
+}
+
+message CreateRoomResponse {
+    int32 status = 1;
+    Room room = 2;
+    optional string error = 3;
+}
+
+message UpdateRoomRequest {
+    int32 id = 1;
+    Room room = 2;
+}
+
+message UpdateRoomResponse {
+    int32 status = 1;
+    Room room = 2;
+    optional string error = 3;
+}
+
+message DeleteRoomRequest {
+    int32 id = 1;
+}
+
+message DeleteRoomResponse {
+    int32 status = 1;
+    Room room = 2;
+    optional string error = 3;
+}
+
+message Hotel {
     int32 id = 1;
     string name = 2;
     string adress = 3;
@@ -19,40 +147,45 @@ message catalog {
     string phone = 6;
 }
 
-message GetCatalogRequest {
-    string id = 1;
-}
-
-message GetCatalogResponse {
-    int32 status = 1;
-    repeated string errors = 2;
-}
-
-message CreateCatalogRequest {
-    string name = 1;
-    string adress = 2;
-    string city = 3;
-    string zipcode = 4;
-    string phone = 5;
-}
-
-message CreateCatalogResponse {
-    int32 status = 1;
-    repeated string errors = 2;
-}
-
-message UpdateCatalogRequest {
+message GetHotelsRequest {
     int32 id = 1;
-    catalog catalog = 2;
 }
 
-message UpdateCatalogResponse {
+message GetHotelsResponse {
     int32 status = 1;
-    repeated string errors = 2;
+    repeated Hotel hotels = 2;
+    optional string error = 3;
 }
 
-message DeleteCatalogRequest {
-    int32 status = 1;
-    repeated string errors = 2;
+message CreateHotelRequest {
+    Hotel hotel = 1;
 }
+
+message CreateHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
+message UpdateHotelRequest {
+    int32 id = 1;
+    Hotel hotel = 2;
+}
+
+message UpdateHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
+message DeleteHotelRequest {
+    int32 id = 1;
+}
+
+message DeleteHotelResponse {
+    int32 status = 1;
+    Hotel hotel = 2;
+    optional string error = 3;
+}
+
 
