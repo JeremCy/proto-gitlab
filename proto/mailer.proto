@@ -1,0 +1,24 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package mailer;
+
+service MailerServices {
+  rpc create(CreateMailerRequest) returns (CreateMailerResponse) {}
+}
+
+message CreateMailerRequest {
+    string sender_email = 1;
+    string recipients = 2;
+    string subject = 3;
+    string userToken = 4;
+    string userId = 5;
+    string bookingId = 6;
+    optional string text_data = 7;
+    optional string html_data =  8;
+    optional string template_url = 9;
+}
+
+message CreateMailerResponse {
+    int32 status = 1;
+    repeated string errors = 2;
+}
